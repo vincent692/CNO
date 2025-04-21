@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Messages à envoyer</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .message-btn {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #e0f7fa;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .message-btn:hover {
+      background-color: #b2ebf2;
+    }
+    .icon {
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Cliquer pour envoyer un message</h2>
+
+  <button class="message-btn" onclick="sendMessage('Bonjour, comment vas-tu ?')">
+    <span class="icon">🔊</span> Bonjour, comment vas-tu ?
+  </button>
+
+  <button class="message-btn" onclick="sendMessage('Je pense à toi.')">
+    <span class="icon">🔊</span> Je pense à toi.
+  </button>
+
+  <button class="message-btn" onclick="sendMessage('À bientôt !')">
+    <span class="icon">🔊</span> À bientôt !
+  </button>
+
+  <script>
+    function sendMessage(text) {
+      // Lecture vocale
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = "fr-FR";
+      speechSynthesis.speak(msg);
+
+      // Copier dans le presse-papier
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Message copié ! Tu peux maintenant le coller dans Messenger.");
+      });
+    }
+  </script>
+</body>
+</html>
+Création de la page
