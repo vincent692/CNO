@@ -124,11 +124,11 @@
 
 <!-- Grille de pictogrammes -->
 <div class="grid-container">
-  <div class="picto-btn" onclick="addWord('Bonjour')">
-    <img src="bonjour.png" alt="Bonjour">
-    <div class="picto-text">Bonjour</div>
-  </div>
-
+ <div class="picto-btn" onclick="addWord('Bonjour', this)">
+  <img src="bonjour.png" alt="Bonjour">
+  <div class="picto-text">Bonjour</div>
+</div>
+ 
   <div class="picto-btn" onclick="addWord('je')">
     <img src="je.png" alt="Je">
     <div class="picto-text">Je</div>
@@ -168,16 +168,23 @@
   };
 
   // Ajouter un mot
- function addWord(word) {
-  // Prononce le mot immédiatement
+function addWord(word, element = null) {
+  // Animation visuelle
+  if (element) {
+    element.classList.add("animate");
+    setTimeout(() => element.classList.remove("animate"), 300);
+  }
+
+  // Lecture audio
   const msg = new SpeechSynthesisUtterance(word);
   msg.lang = "fr-FR";
   speechSynthesis.speak(msg);
 
-  // Ajoute le mot à la phrase
+  // Ajout à la phrase
   phraseZone.textContent += (phraseZone.textContent.trim() ? " " : "") + word;
   localStorage.setItem("phrase", phraseZone.textContent);
 }
+
 
   // Copier la phrase
   function copyPhrase() {
