@@ -2,60 +2,40 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Compose une phrase</title>
+  <title>Communication par pictogrammes</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
+      background-color: #f9f9f9;
     }
 
-    #phrase {
+    h1 {
+      text-align: center;
+    }
+
+    #phrase-zone {
+      border: 2px solid #00acc1;
+      background: #e0f7fa;
       padding: 15px;
       font-size: 20px;
-      border: 2px solid #00acc1;
       border-radius: 10px;
-      margin-bottom: 20px;
-      background-color: #f1f8e9;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Change à 3 ou 4 si tu veux + de colonnes */
-      gap: 15px;
-    }
-
-    .message-btn {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      background-color: #e0f7fa;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    .message-btn:hover {
-      background-color: #b2ebf2;
-    }
-
-    .icon-img {
-      width: 40px;
-      height: 40px;
-      margin-right: 10px;
+      margin-bottom: 15px;
+      min-height: 50px;
     }
 
     .tools {
-      margin-top: 15px;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     .tools button {
-      margin-right: 10px;
-      padding: 8px 12px;
+      margin: 5px;
+      padding: 10px 15px;
       font-size: 16px;
-      cursor: pointer;
       border: none;
       border-radius: 8px;
+      cursor: pointer;
       background-color: #4caf50;
       color: white;
     }
@@ -64,82 +44,149 @@
       background-color: #388e3c;
     }
 
-    .tools .clear {
+    .clear-btn {
       background-color: #f44336;
     }
 
-    .tools .clear:hover {
+    .clear-btn:hover {
       background-color: #d32f2f;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+
+    .picto-btn {
+      background-color: white;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .picto-btn:hover {
+      border-color: #00acc1;
+    }
+
+    .picto-btn img {
+      width: 20px;
+      height: 20px;
+      margin-bottom: 5px;
+    }
+
+    .picto-text {
+      font-size: 14px;
+    }
+
+    .nav {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #00796b;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h2>Compose une phrase</h2>
 
-  <!-- ZONE DE PHRASE -->
-  <div id="phrase">[ ta phrase apparaît ici ]</div>
+<h1>Communication par pictogrammes</h1>
 
-  <div class="tools">
-    <button onclick="copyPhrase()">📋 Copier la phrase</button>
-    <button class="clear" onclick="clearPhrase()">🗑️ Effacer</button>
-    <button onclick="speakPhrase()">🔊 Lire la phrase</button>
+<!-- Zone de phrase -->
+<div id="phrase-zone" contenteditable="true">[ Clique ici pour écrire ou compléter la phrase ]</div>
+
+<!-- Boutons -->
+<div class="tools">
+  <button onclick="speakPhrase()">🔊 Lire la phrase</button>
+  <button onclick="copyPhrase()">📋 Copier</button>
+  <button class="clear-btn" onclick="clearPhrase()">🗑️ Effacer</button>
+</div>
+
+<!-- Grille de pictogrammes -->
+<div class="grid-container">
+  <div class="picto-btn" onclick="addWord('Bonjour')">
+    <img src="bonjour.png" alt="Bonjour">
+    <div class="picto-text">Bonjour</div>
   </div>
 
-  <!-- GRILLE DE BOUTONS -->
-  <div class="grid-container">
-    <button class="message-btn" onclick="addToPhrase('Bonjour')">
-      <img src="bonjour.png" alt="Bonjour" class="icon-img">
-      Bonjour
-    </button>
-
-    <button class="message-btn" onclick="addToPhrase('comment vas-tu ?')">
-      <img src="comment.png" alt="Comment vas-tu" class="icon-img">
-      comment vas-tu ?
-    </button>
-
-    <button class="message-btn" onclick="addToPhrase('Je t\'aime')">
-      <img src="coeur.png" alt="Je t'aime" class="icon-img">
-      Je t'aime
-    </button>
-
-    <button class="message-btn" onclick="addToPhrase('à bientôt !')">
-      <img src="a-bientot.png" alt="À bientôt" class="icon-img">
-      à bientôt !
-    </button>
+  <div class="picto-btn" onclick="addWord('je')">
+    <img src="je.png" alt="Je">
+    <div class="picto-text">Je</div>
   </div>
 
-  <script>
-    let phrase = "";
+  <div class="picto-btn" onclick="addWord('suis')">
+    <img src="suis.png" alt="suis">
+    <div class="picto-text">suis</div>
+  </div>
+
+  <div class="picto-btn" onclick="addWord('content')">
+    <img src="content.png" alt="content">
+    <div class="picto-text">content</div>
+  </div>
+
+  <div class="picto-btn" onclick="addWord('merci')">
+    <img src="merci.png" alt="merci">
+    <div class="picto-text">merci</div>
+  </div>
+</div>
+
+<!-- Liens de navigation -->
+<div class="nav">
+  <a href="emotions.html">🙂 Émotions</a>
+  <a href="besoins.html">🍽️ Besoins</a>
+  <a href="index.html">🏠 Accueil</a>
+</div>
+
+<!-- Script -->
+<script>
+  const phraseZone = document.getElementById("phrase-zone");
+
+  // Récupérer la phrase sauvegardée
+  window.onload = () => {
+    const saved = localStorage.getItem("phrase");
+    if (saved) phraseZone.textContent = saved;
+  };
+
+  // Ajouter un mot
+  function addWord(word) {
+    phraseZone.textContent += (phraseZone.textContent.trim() ? " " : "") + word;
+    localStorage.setItem("phrase", phraseZone.textContent);
   }
-  const msg = new SpeechSynthesisUtterance(phrase);
-  msg.lang = "fr-FR";
-  speechSynthesis.speak(msg);
-}
 
-    function speakPhrase() {
-    if (phrase.trim() === "") {
-    alert("La phrase est vide !");
-    return;
-  
-    function addToPhrase(text) {
-      const msg = new SpeechSynthesisUtterance(text);
-      msg.lang = "fr-FR";
-      speechSynthesis.speak(msg);
+  // Copier la phrase
+  function copyPhrase() {
+    navigator.clipboard.writeText(phraseZone.textContent).then(() => {
+      alert("Phrase copiée !");
+    });
+  }
 
-      phrase += (phrase ? " " : "") + text;
-      document.getElementById("phrase").textContent = phrase;
-    }
+  // Lire la phrase
+  function speakPhrase() {
+    const msg = new SpeechSynthesisUtterance(phraseZone.textContent);
+    msg.lang = "fr-FR";
+    speechSynthesis.speak(msg);
+  }
 
-    function copyPhrase() {
-      navigator.clipboard.writeText(phrase).then(() => {
-        alert("Phrase copiée ! Tu peux la coller dans Messenger.");
-      });
-    }
+  // Effacer la phrase
+  function clearPhrase() {
+    phraseZone.textContent = "";
+    localStorage.removeItem("phrase");
+  }
 
-    function clearPhrase() {
-      phrase = "";
-      document.getElementById("phrase").textContent = "[ ta phrase apparaît ici ]";
-    }
-  </script>
+  // Sauvegarde automatique (en cas de modification manuelle)
+  phraseZone.addEventListener("input", () => {
+    localStorage.setItem("phrase", phraseZone.textContent);
+  });
+</script>
+
 </body>
 </html>
