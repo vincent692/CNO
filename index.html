@@ -110,17 +110,17 @@
 
   <script>
     let phrase = "";
-  function speakPhrase() {
-    if (phrase.trim() === "") {
-    alert("La phrase est vide !");
-    return;
   }
   const msg = new SpeechSynthesisUtterance(phrase);
   msg.lang = "fr-FR";
   speechSynthesis.speak(msg);
 }
 
-    
+    function speakPhrase() {
+    if (phrase.trim() === "") {
+    alert("La phrase est vide !");
+    return;
+  
     function addToPhrase(text) {
       const msg = new SpeechSynthesisUtterance(text);
       msg.lang = "fr-FR";
