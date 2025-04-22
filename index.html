@@ -2,35 +2,31 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Messages à envoyer</title>
+  <title>Compose une phrase</title>
   <style>
- .grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colonnes */
-  gap: 15px;
-}
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
 
-.message-btn {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: #e0f7fa;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 18px;
-}
+    #phrase {
+      padding: 15px;
+      font-size: 20px;
+      border: 2px solid #00acc1;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background-color: #f1f8e9;
+    }
 
-.icon-img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-    body { font-family: Arial, sans-serif; padding: 24px; }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Change à 3 ou 4 si tu veux + de colonnes */
+      gap: 15px;
+    }
+
     .message-btn {
       display: flex;
       align-items: center;
-      margin: 10px 0;
       padding: 10px;
       background-color: #e0f7fa;
       border: none;
@@ -38,60 +34,101 @@
       cursor: pointer;
       font-size: 18px;
     }
+
     .message-btn:hover {
       background-color: #b2ebf2;
     }
-  .icon {
-      font-size: 20px;
+
+    .icon-img {
+      width: 40px;
+      height: 40px;
       margin-right: 10px;
     }
-  .icon-img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
 
+    .tools {
+      margin-top: 15px;
+    }
+
+    .tools button {
+      margin-right: 10px;
+      padding: 8px 12px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .tools button:hover {
+      background-color: #388e3c;
+    }
+
+    .tools .clear {
+      background-color: #f44336;
+    }
+
+    .tools .clear:hover {
+      background-color: #d32f2f;
+    }
   </style>
 </head>
-
 <body>
-  <h2>Cliquer pour envoyer un message</h2>
-<div class="grid-container">
-  <button class="message-btn" onclick="sendMessage('Bonjour, comment vas-tu ?')">
-    <img src="bonjour.png" alt="Bonjour" class="icon-img">
-    Bonjour, comment vas-tu ?
-  </button>
+  <h2>Compose une phrase</h2>
 
-  <button class="message-btn" onclick="sendMessage('Je pense à toi.')">
-    <img src="coeur.png" alt="Je pense à toi" class="icon-img">
-    Je pense à toi.
-  </button>
+  <!-- ZONE DE PHRASE -->
+  <div id="phrase">[ ta phrase apparaît ici ]</div>
 
-  <button class="message-btn" onclick="sendMessage('À bientôt !')">
-    <img src="a-bientot.png" alt="À bientôt" class="icon-img">
-    À bientôt !
-  </button>
+  <div class="tools">
+    <button onclick="copyPhrase()">📋 Copier la phrase</button>
+    <button class="clear" onclick="clearPhrase()">🗑️ Effacer</button>
+  </div>
 
-  <button class="message-btn" onclick="sendMessage('Je suis content.')">
-    <img src="content.png" alt="Content" class="icon-img">
-    Je suis content.
-  </button>
-</div>
-  
+  <!-- GRILLE DE BOUTONS -->
+  <div class="grid-container">
+    <button class="message-btn" onclick="addToPhrase('Bonjour')">
+      <img src="bonjour.png" alt="Bonjour" class="icon-img">
+      Bonjour
+    </button>
+
+    <button class="message-btn" onclick="addToPhrase('comment vas-tu ?')">
+      <img src="comment.png" alt="Comment vas-tu" class="icon-img">
+      comment vas-tu ?
+    </button>
+
+    <button class="message-btn" onclick="addToPhrase('Je t\'aime')">
+      <img src="coeur.png" alt="Je t'aime" class="icon-img">
+      Je t'aime
+    </button>
+
+    <button class="message-btn" onclick="addToPhrase('à bientôt !')">
+      <img src="a-bientot.png" alt="À bientôt" class="icon-img">
+      à bientôt !
+    </button>
+  </div>
 
   <script>
-    function sendMessage(text) {
-      // Lecture vocale
+    let phrase = "";
+
+    function addToPhrase(text) {
       const msg = new SpeechSynthesisUtterance(text);
       msg.lang = "fr-FR";
       speechSynthesis.speak(msg);
 
-      // Copier dans le presse-papier
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Message copié ! Tu peux maintenant le coller dans Messenger.");
+      phrase += (phrase ? " " : "") + text;
+      document.getElementById("phrase").textContent = phrase;
+    }
+
+    function copyPhrase() {
+      navigator.clipboard.writeText(phrase).then(() => {
+        alert("Phrase copiée ! Tu peux la coller dans Messenger.");
       });
+    }
+
+    function clearPhrase() {
+      phrase = "";
+      document.getElementById("phrase").textContent = "[ ta phrase apparaît ici ]";
     }
   </script>
 </body>
 </html>
-Création de la page
