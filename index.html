@@ -105,6 +105,11 @@
   50% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
+    
+#phrase-zone.flash {
+  background-color: #fff59d;
+  transition: background-color 0.4s ease;
+}
 
   </style>
 </head>
@@ -169,29 +174,26 @@
 
   // Ajouter un mot
 function addWord(word, element = null) {
-  // Animation visuelle
+  // Animation sur le pictogramme (effet zoom)
   if (element) {
     element.classList.add("animate");
     setTimeout(() => element.classList.remove("animate"), 300);
   }
 
-  // Lecture audio
+  // Lecture du mot
   const msg = new SpeechSynthesisUtterance(word);
   msg.lang = "fr-FR";
   speechSynthesis.speak(msg);
 
-  // Ajout à la phrase
+  // Ajout du mot à la phrase
   phraseZone.textContent += (phraseZone.textContent.trim() ? " " : "") + word;
   localStorage.setItem("phrase", phraseZone.textContent);
+
+  // 💡 Effet visuel sur la zone de phrase (flash jaune)
+  phraseZone.classList.add("flash");
+  setTimeout(() => phraseZone.classList.remove("flash"), 400);
 }
 
-
-  // Copier la phrase
-  function copyPhrase() {
-    navigator.clipboard.writeText(phraseZone.textContent).then(() => {
-      alert("Phrase copiée !");
-    });
-  }
 
   // Lire la phrase
   function speakPhrase() {
