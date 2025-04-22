@@ -157,10 +157,16 @@
   };
 
   // Ajouter un mot
-  function addWord(word) {
-    phraseZone.textContent += (phraseZone.textContent.trim() ? " " : "") + word;
-    localStorage.setItem("phrase", phraseZone.textContent);
-  }
+ function addWord(word) {
+  // Prononce le mot immédiatement
+  const msg = new SpeechSynthesisUtterance(word);
+  msg.lang = "fr-FR";
+  speechSynthesis.speak(msg);
+
+  // Ajoute le mot à la phrase
+  phraseZone.textContent += (phraseZone.textContent.trim() ? " " : "") + word;
+  localStorage.setItem("phrase", phraseZone.textContent);
+}
 
   // Copier la phrase
   function copyPhrase() {
