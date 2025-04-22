@@ -82,6 +82,7 @@
   <div class="tools">
     <button onclick="copyPhrase()">📋 Copier la phrase</button>
     <button class="clear" onclick="clearPhrase()">🗑️ Effacer</button>
+    <button onclick="speakPhrase()">🔊 Lire la phrase</button>
   </div>
 
   <!-- GRILLE DE BOUTONS -->
@@ -109,7 +110,17 @@
 
   <script>
     let phrase = "";
+  function speakPhrase() {
+    if (phrase.trim() === "") {
+    alert("La phrase est vide !");
+    return;
+  }
+  const msg = new SpeechSynthesisUtterance(phrase);
+  msg.lang = "fr-FR";
+  speechSynthesis.speak(msg);
+}
 
+    
     function addToPhrase(text) {
       const msg = new SpeechSynthesisUtterance(text);
       msg.lang = "fr-FR";
