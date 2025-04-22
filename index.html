@@ -4,6 +4,28 @@
   <meta charset="UTF-8">
   <title>Messages à envoyer</title>
   <style>
+ .grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  gap: 15px;
+}
+
+.message-btn {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #e0f7fa;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.icon-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
     body { font-family: Arial, sans-serif; padding: 24px; }
     .message-btn {
       display: flex;
@@ -28,29 +50,7 @@
   height: 40px;
   margin-right: 10px;
 }
- .grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-  gap: 15px;
-}
 
-.message-btn {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: #e0f7fa;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.icon-img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
- 
   </style>
 </head>
 
