@@ -28,33 +28,56 @@
   height: 40px;
   margin-right: 10px;
 }
+ .grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  gap: 15px;
+}
+
+.message-btn {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #e0f7fa;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.icon-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+ 
   </style>
 </head>
 
 <body>
   <h2>Cliquer pour envoyer un message</h2>
-
+<div class="grid-container">
   <button class="message-btn" onclick="sendMessage('Bonjour, comment vas-tu ?')">
-  <img src="bonjour.png" alt="Bonjour" class="icon-img">
-  Bonjour, comment vas-tu ?
-</button>
-
-<button class="message-btn" onclick="sendMessage('Je pense à toi.')">
-  <img src="coeur.png" alt="Je pense à toi" class="icon-img">
-  Je pense à toi.
-</button>
-
-  <button class="message-btn" onclick="sendMessage('Bonjour, comment vas-tu ?')">
-    <span class="icon">🔊</span> Bonjour, comment vas-tu ?
+    <img src="bonjour.png" alt="Bonjour" class="icon-img">
+    Bonjour, comment vas-tu ?
   </button>
 
   <button class="message-btn" onclick="sendMessage('Je pense à toi.')">
-    <span class="icon">🔊</span> Je pense à toi.
+    <img src="coeur.png" alt="Je pense à toi" class="icon-img">
+    Je pense à toi.
   </button>
 
   <button class="message-btn" onclick="sendMessage('À bientôt !')">
-    <span class="icon">🔊</span> À bientôt !
+    <img src="a-bientot.png" alt="À bientôt" class="icon-img">
+    À bientôt !
   </button>
+
+  <button class="message-btn" onclick="sendMessage('Je suis content.')">
+    <img src="content.png" alt="Content" class="icon-img">
+    Je suis content.
+  </button>
+</div>
+  
 
   <script>
     function sendMessage(text) {
