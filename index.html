@@ -118,7 +118,7 @@
 <h1>Communication par pictogrammes</h1>
 
 <!-- Zone de phrase -->
-<div id="phrase-zone" contenteditable="true">[ 2029]</div>
+<div id="phrase-zone" contenteditable="true">[ 2040]</div>
 
 <!-- Boutons -->
 <div class="tools">
@@ -208,6 +208,13 @@ function addWord(word, element = null) {
     localStorage.removeItem("phrase");
   }
 
+   // Copier la phrase
+  function copyPhrase() {
+    navigator.clipboard.writeText(phraseZone.textContent).then(() => {
+      alert("Phrase copiée !");
+    });
+  }
+  
   // Sauvegarde automatique (en cas de modification manuelle)
   phraseZone.addEventListener("input", () => {
     localStorage.setItem("phrase", phraseZone.textContent);
